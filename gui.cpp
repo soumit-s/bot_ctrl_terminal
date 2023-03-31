@@ -39,10 +39,14 @@ void Window::update_surface() const { SDL_UpdateWindowSurface(wnd); }
 void Window::handle_events() {
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
-		if (e.type == SDL_QUIT) {
-			Event event;
-			event.type = EventType::QUIT;
-			handler->handle_event(&event);
-		}
+		Event event;
+		convert_event(&e, &event);
+		handler->handle_event(&event);
+	}
+}
+
+void Window::convert_event(SDL_Event *e, Event *event) {
+	if (e->type == SDL_QUIT) {
+		event->type = EventType::QUIT;
 	}
 }

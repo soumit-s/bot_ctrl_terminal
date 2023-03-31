@@ -51,4 +51,7 @@ public:
 	void update_surface() const;
 
 	void set_event_handler(EventHandler* ehandler);
+
+private:
+	void convert_event(SDL_Event *sdl_event, Event *event);
 };
