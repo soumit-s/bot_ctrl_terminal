@@ -30,6 +30,9 @@ public:
 class Window {
 	SDL_Window* wnd;
 	SDL_Surface* surface;
+
+	SDL_GameController* controller;
+
 	std::string title;
 	int width, height;
 
@@ -52,6 +55,13 @@ public:
 
 	void set_event_handler(EventHandler* ehandler);
 
+	// Returns the number of joysticks current connected.
+	int scan_num_joysticks();
+
+	bool select_controller_device();
+
 private:
-	void convert_event(SDL_Event *sdl_event, Event *event);
+	bool convert_event(SDL_Event *sdl_event, Event *event);
+
+	bool is_device_our_controller(Sint32 id);
 };
