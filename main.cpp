@@ -13,6 +13,12 @@ int main() {
 
 	wnd.set_event_handler(&ehandler);
 
+	std::cout << wnd.scan_num_joysticks() << std::endl;
+	
+	if (!wnd.select_controller_device()) {
+		throw std::runtime_error("Failed to select controller");
+	}
+	
 	while (!quit) {
 		wnd.handle_events();
 	}
